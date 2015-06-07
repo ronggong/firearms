@@ -32,6 +32,17 @@ def djk(graph, vertices, source):
                 prev[neighbor] = u
 
     return dist, prev
+    
+def shortestPath(graph, vertices, start, end):
+    dist, prev = djk(graph, vertices, start)
+    path = []
+    while 1:
+        path.append(end)
+        if end == start: break
+        end = prev[end]
+    
+    path.reverse()
+    return path
 
 if __name__ == "__main__":
     graph = {'s':{'u':10, 'x':5},
@@ -41,7 +52,7 @@ if __name__ == "__main__":
              'y':{'s':7, 'v':6}}
     vertices = ['s','u','v','x','y']
 
-    dist, prev = djk(graph,vertices,'s')
+    # dist, prev = djk(graph,vertices,'s')
+    path = shortestPath(graph, vertices, 's', 'v')
 
-    print dist
-    print prev
+    print path
